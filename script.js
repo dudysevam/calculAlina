@@ -5,9 +5,6 @@ let answer0 = document.querySelectorAll('.answer') //берем данные и�
 let start_cont= document.querySelector('.start')//берем данные из html контейнер со статистикой
 let btn= document.querySelector('.start_btn')//берем данные из html контейнер со статистикой
 let main=document.querySelector('.bolshoy')
-
-
-
 function randint(min,max){ // функция рандомного вопроса
     return Math.round(Math.random()*(max-min)+min)
 }
@@ -37,8 +34,6 @@ class Question{// класс для вопросов "инструкция"
         else if(sign=='-') {this.correct = a - b}
         else if(sign=='*') {this.correct = a * b}
         else if(sign=='/') {this.correct = a / b}
-
-        
         this.answers=[
         randint(this.correct - 15, this.correct - 1),
         randint(this.correct - 15, this.correct - 1),
@@ -47,8 +42,7 @@ class Question{// класс для вопросов "инструкция"
         randint(this.correct + 1, this.correct + 15),
          ]
     shuffle (this.answers)
-        }
-                
+        }        
     display() { // отображаем класс на экране
         question1.innerHTML=this.question
         for (let i=0; i< this.answers.length; i+=1)
@@ -62,20 +56,13 @@ class Question{// класс для вопросов "инструкция"
        let counter_correct  // счетчик правильных ответов
     let counter  // счетчик вопросов
     let current_quetion // текущий вопрос
-
-
-
      btn.addEventListener('click', function(){
      main.style.display='flex'
      start_cont.style.display='none'
-    
     counter_correct= 0 // счетчик правильных ответов
     counter= 0 // счетчик вопросов
     current_quetion= new Question()// текущий вопрос
-
-   
      current_quetion.display()//отобразить вопрос текущий
-    
      setTimeout(function(){
        main.style.display='none'
        start_cont.style.display='flex'
@@ -83,30 +70,23 @@ class Question{// класс для вопросов "инструкция"
      `Вы дали ${counter_correct} правильных ответов из ${counter}.
       Точность - ${Math.round(counter_correct*100/counter)}% `},10000)
 })
-
      for(let i = 0;i<answer0.length; i+=1){ // проверим клик на кнопки ответов
          answer0[i].addEventListener('click', function() {
-     
     if(answer0[i].innerHTML==current_quetion.correct){
        console.log("Правильно")
        answer0[i].style.background='green'
        setTimeout(()=>{answer0[i].style.background= 'white'},200)
       counter_correct+=1
-    
-
     }
-       
     else{
        console.log("Неправильно")
         answer0[i].style.background='red'
         setTimeout(()=>{answer0[i].style.background= 'white'},200)
-     
     }
     counter+=1 // изменение счетчика
     current_quetion=new Question() // создание нового вопроса
     current_quetion.display() // отобразить новый вопрос
-    })
-     
+    }) 
     }
     
      
