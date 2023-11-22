@@ -1,30 +1,29 @@
 let statistika_js=document.querySelector('.statistika') 
-let question_js=document.querySelector('.question') 
-let question1 = document.querySelector('.question') // берем данные из  HTML для окна вопроса
-let answer0 = document.querySelectorAll('.answer') //берем данные из HTML для окна вопроса
-let start_cont= document.querySelector('.start')//берем данные из html контейнер со статистикой
-let btn= document.querySelector('.start_btn')//берем данные из html контейнер со статистикой
+let question1 = document.querySelector('.question') 
+let answer0 = document.querySelectorAll('.answer') 
+let start_cont= document.querySelector('.start')
+let btn= document.querySelector('.start_btn')
 let main=document.querySelector('.bolshoy')
-function randint(min,max){ // функция рандомного вопроса
+function randint(min,max){ 
     return Math.round(Math.random()*(max-min)+min)
 }
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
 
-  while (currentIndex != 0) { // Цикл повторяется до тех пор, пока остаются элементы для перемешивания
-    randomIndex = Math.floor(Math.random() * currentIndex); // Выбираем оставшийся элемент.
+  while (currentIndex != 0) { 
+    randomIndex = Math.floor(Math.random() * currentIndex); 
     currentIndex--;
-    [array[currentIndex], array[randomIndex]] = [    // Меняем местами с текущим элементом.
+    [array[currentIndex], array[randomIndex]] = [   
       array[randomIndex], array[currentIndex]];
   }
-  return array; // Возвращаем перемешанный массив
+  return array;
 }
 
-let signs =['+','-','*','/'] // масив знаков
-function randomSign(){ // функция рандома знака
+let signs =['+','-','*','/'] 
+function randomSign(){ 
          return signs[randint(0,3)]
 }
-class Question{// класс для вопросов "инструкция"
+class Question{
     constructor(){
         let a = randint(1, 30)
         let b = randint(1, 30)
@@ -43,7 +42,7 @@ class Question{// класс для вопросов "инструкция"
          ]
     shuffle (this.answers)
         }        
-    display() { // отображаем класс на экране
+    display() {
         question1.innerHTML=this.question
         for (let i=0; i< this.answers.length; i+=1)
         {
@@ -53,16 +52,16 @@ class Question{// класс для вопросов "инструкция"
         } 
         main.style.display='none'
        start_cont.style.display='flex'
-       let counter_correct  // счетчик правильных ответов
-    let counter  // счетчик вопросов
-    let current_quetion // текущий вопрос
+       let counter_correct  
+    let counter 
+    let current_quetion 
      btn.addEventListener('click', function(){
      main.style.display='flex'
      start_cont.style.display='none'
-    counter_correct= 0 // счетчик правильных ответов
-    counter= 0 // счетчик вопросов
-    current_quetion= new Question()// текущий вопрос
-     current_quetion.display()//отобразить вопрос текущий
+    counter_correct= 0
+    counter= 0 
+    current_quetion= new Question()
+     current_quetion.display()
      setTimeout(function(){
        main.style.display='none'
        start_cont.style.display='flex'
@@ -70,7 +69,7 @@ class Question{// класс для вопросов "инструкция"
      `Вы дали ${counter_correct} правильных ответов из ${counter}.
       Точность - ${Math.round(counter_correct*100/counter)}% `},10000)
 })
-     for(let i = 0;i<answer0.length; i+=1){ // проверим клик на кнопки ответов
+     for(let i = 0;i<answer0.length; i+=1){
          answer0[i].addEventListener('click', function() {
     if(answer0[i].innerHTML==current_quetion.correct){
        console.log("Правильно")
@@ -83,9 +82,9 @@ class Question{// класс для вопросов "инструкция"
         answer0[i].style.background='red'
         setTimeout(()=>{answer0[i].style.background= 'white'},200)
     }
-    counter+=1 // изменение счетчика
-    current_quetion=new Question() // создание нового вопроса
-    current_quetion.display() // отобразить новый вопрос
+    counter+=1 
+    current_quetion=new Question() 
+    current_quetion.display() 
     }) 
     }
     
