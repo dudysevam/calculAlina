@@ -1,15 +1,14 @@
-let statistika_js=document.querySelector('.statistika') 
+let statistika_js = document.querySelector('.statistika') 
 let question1 = document.querySelector('.question') 
 let answer0 = document.querySelectorAll('.answer') 
-let start_cont= document.querySelector('.start')
-let btn= document.querySelector('.start_btn')
-let main=document.querySelector('.bolshoy')
+let start_cont = document.querySelector('.start')
+let btn = document.querySelector('.start_btn')
+let main = document.querySelector('.bolshoy')
 function randint(min,max){ 
     return Math.round(Math.random()*(max-min)+min)
 }
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
-
   while (currentIndex != 0) { 
     randomIndex = Math.floor(Math.random() * currentIndex); 
     currentIndex--;
@@ -50,9 +49,9 @@ class Question{
         }
       }
         } 
-        main.style.display='none'
-       start_cont.style.display='flex'
-       let counter_correct  
+    main.style.display='none'
+    start_cont.style.display='flex'
+    let counter_correct  
     let counter 
     let current_quetion 
      btn.addEventListener('click', function(){
